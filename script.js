@@ -120,9 +120,6 @@ signupForm.addEventListener("submit", function (event) {
 
     alert("Account created successfully!");
 
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 1000);
 
 
 
@@ -131,20 +128,52 @@ signupForm.addEventListener("submit", function (event) {
 
 // Login Validation 
 
-const loginForm = document.getElementById("loginform");
+const loginFormLf = document.getElementById("loginForm");
 const loginEmail = document.getElementById("loginemail");
 const loginPassword = document.getElementById("loginpassword");
 const loginError = document.getElementById("loginerror");
 
 let allUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-loginForm.addEventListener("submit", function (event) {
+loginFormLf.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
     let emailVal = loginEmail.value.trim();
     let passwordVal = loginPassword.value.trim();
+
+    if (emailVal === "" || passwordVal === "") {
+        loginError.innerHTML = "Please fill all fields";
+        loginError.style.color = "red";
+        loginError.style.fontSize = "12px";
+
+        return;
+    }
     
+
+
+    let foundUser = false;
+
+    for (let i = 0; i < allUsers.length; i++) {
+
+        let storedEmail = allUsers[i].email;
+        let storedPassword = allUsers[i].password;
+
+        if (storedEmail === emailVal && storedPassword === passwordVal) {
+            foundUser = true;
+            break;
+        }
+    }
+
+    if(foundUser) {
+        alert("Login successful!");
+
+        loginError.innerHTML = "";
+    } else {
+        loginError.innerHTML = "Invalid credentials. Please try again.";
+        loginError.style.color = "red";
+        loginError.style.fontSize = "12px";
+    }
 
 
 
