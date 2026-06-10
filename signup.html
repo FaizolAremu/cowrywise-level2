@@ -30,12 +30,57 @@
                     <hr><span>or</span>
                     <hr>
                 </div>
-                <form action="" id="signupform">
-                    <input type="email" id="email" placeholder="Email Address">
+                <form id="signupform">
+
+                    <div class="input-box">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label>Email Address</label>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="text" id="firstname" placeholder=" " required>
+                            <label>First Name</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="text" id="lastname" placeholder=" " required>
+                            <label>Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="text" id="username" placeholder=" " required>
+                            <label>Username</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="tel" id="phone" placeholder=" " required>
+                            <label>Phone Number</label>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <input type="password" id="password" placeholder=" " required>
+                            <label>Password</label>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="password" id="confirmPassword" placeholder=" " required>
+                            <label>Confirm Password</label>
+                        </div>
+                    </div>
+
                     <p id="error"></p>
-                    <button class="signup-continue">Continue</button>
+
+                    <button class="signup-continue">
+                        Create Account
+                    </button>
+
                 </form>
-                
+
             </div>
 
             <div class="signup-footer">
@@ -57,4 +102,5 @@
     </div>
 </body>
 <script src="script.js"></script>
+
 </html>

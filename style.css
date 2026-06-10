@@ -1131,6 +1131,72 @@ input:focus {
   text-decoration: none;
 }
 
+#signupform {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-row {
+  display: flex;
+  gap: 20px;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 18px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  background: transparent;
+}
+
+.input-box label {
+  position: absolute;
+  left: 14px;
+  top: 18px;
+  color: #9ca3af;
+  pointer-events: none;
+  transition: .3s;
+  background: white;
+  padding: 0 4px;
+}
+
+.input-box input:focus+label,
+.input-box input:not(:placeholder-shown)+label {
+  top: -10px;
+  font-size: 12px;
+  color: #0066f5;
+}
+
+.input-box input:focus {
+  border-color: #0066f5;
+}
+
+.signup-continue {
+  margin-top: 10px;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #0066f5;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.signup-continue:hover {
+  background: #0052c7;
+}
+
 
 
 
@@ -1339,5 +1405,38 @@ input:focus {
   .signup-footer {
     font-size: 12px;
   }
+
+  .signup-container {
+    flex-direction: column;
+  }
+
+  .signup-left {
+    padding: 20px;
+  }
+
+  .signup-box {
+    padding: 30px;
+    margin-top: 40px;
+  }
+
+  .signup-box h1 {
+    font-size: 2rem;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .signup-footer {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .signup-right {
+    display: none;
+  }
+
 
 }
