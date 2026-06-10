@@ -101,6 +101,40 @@ signupForm.addEventListener("submit", function (event) {
     }
 
 
+    let emailExists = false;
+
+    for (let i = 0; i < users.length; i++) {
+
+        if (users[i].email === emailValue) {
+            emailExists = true;
+            break;
+        }
+
+    }
+
+    if (emailExists) {
+
+        errorMessage.innerHTML = "Email already exists";
+        errorMessage.style.color = "red";
+        errorMessage.style.fontSize = "12px";
+        return;
+    }
+
+    let newUser = {
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        username: usernameValue,
+        email: emailValue,
+        phone: phoneValue,
+        password: passwordValue
+    };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    signupForm.reset();
+
+    alert("Account created successfully!");
+
 
 
 
