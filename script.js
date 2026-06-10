@@ -23,20 +23,88 @@ signupForm.addEventListener("submit", function (event) {
     let passwordValue = passwordInput.value.trim();
     let confirmPasswordValue = confirmPasswordInput.value.trim();
 
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    let newUser = {
-        firstName: firstNameValue,
-        lastName: lastNameValue,
-        username: usernameValue,
-        email: emailValue,
-        phone: phoneValue,
-        password: passwordValue,
-        confirmPassword: confirmPasswordValue,
-    };
 
-    users.push(newUser);
+    // let newUser = {
+    //     firstName: firstNameValue,
+    //     lastName: lastNameValue,
+    //     username: usernameValue,
+    //     email: emailValue,
+    //     phone: phoneValue,
+    //     password: passwordValue,
+    //     confirmPassword: confirmPasswordValue,
+    // };
 
-    localStorage.setItem("users", JSON.stringify(users));
+    // users.push(newUser);
+
+    // localStorage.setItem("users", JSON.stringify(users));
+
+    if (
+        firstNameValue === "" ||
+        lastNameValue === "" ||
+        usernameValue === "" ||
+        emailValue === "" ||
+        phoneValue === "" ||
+        passwordValue === "" ||
+        confirmPasswordValue === ""
+    ) {
+        errorMessage.innerHTML = "Please fill in all fields";
+        errorMessage.style.color = "red";
+        errorMessage.style.fontSize = "12px";
+
+        return;
+    }
+
+    // Email validation
+    if (!emailPattern.test(emailValue)) {
+
+        errorMessage.innerHTML = "Enter a valid email address";
+        errorMessage.style.color = "red";
+        errorMessage.style.fontSize = "12px";
+
+        return;
+    }
+
+    errorMessage.innerHTML = "";
+
+    if (isNaN(phoneValue)) {
+
+        errorMessage.innerHTML = "Phone number must contain only numbers";
+        errorMessage.style.color = "red";
+
+        return;
+    }
+
+    if (phoneValue.length !== 11) {
+
+        errorMessage.innerHTML = "Phone number must be 11 digits";
+        errorMessage.style.color = "red";
+
+        return;
+    }
+
+    if (passwordValue.length < 8) {
+
+        errorMessage.innerHTML = "Password must be at least 8 characters";
+        errorMessage.style.color = "red";
+
+        return;
+    }
+
+    if (passwordValue !== confirmPasswordValue) {
+
+        errorMessage.innerHTML = "Passwords do not match";
+        errorMessage.style.color = "red";
+
+        return;
+    }
+
+
+
+
+
+
 });
 
 
