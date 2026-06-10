@@ -1440,3 +1440,21 @@ input:focus {
 
 
 }
+
+@media (max-width: 992px) {
+  .signup-container {
+    flex-direction: column;
+  }
+
+  .signup-right {
+    display: none;
+  }
+
+  .signup-left {
+    padding: 30px;
+  }
+
+  .signup-box {
+    max-width: 100%;
+  }
+}
