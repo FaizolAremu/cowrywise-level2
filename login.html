@@ -45,17 +45,19 @@
                     <hr>
                 </div>
 
-                <form>
-                    <input type="email" placeholder="Email Address" required>
+                <form id="loginform">
+
+                    <input id="loginemail" type="email" placeholder="Email Address">
 
                     <div class="password-box">
-                        <input type="password" placeholder="Password" required>
-                        <span><img src="./Media/eye-img.svg" alt="" srcset=""></span>
+                        <input id="loginpassword" type="password" placeholder="Password">
+                        <span><img src="./Media/eye-img.svg" alt=""></span>
                     </div>
 
-                    <a href="#" class="forgot">Forgot password?</a>
+                    <p id="loginerror"></p>
 
                     <button class="submit">Sign in</button>
+
                 </form>
 
             </div>
@@ -73,5 +75,6 @@
     </div>
 
 </body>
+<script src="script.js"></script>
 
 </html>

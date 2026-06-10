@@ -25,21 +25,6 @@ signupForm.addEventListener("submit", function (event) {
 
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-    // let newUser = {
-    //     firstName: firstNameValue,
-    //     lastName: lastNameValue,
-    //     username: usernameValue,
-    //     email: emailValue,
-    //     phone: phoneValue,
-    //     password: passwordValue,
-    //     confirmPassword: confirmPasswordValue,
-    // };
-
-    // users.push(newUser);
-
-    // localStorage.setItem("users", JSON.stringify(users));
-
     if (
         firstNameValue === "" ||
         lastNameValue === "" ||
@@ -135,11 +120,36 @@ signupForm.addEventListener("submit", function (event) {
 
     alert("Account created successfully!");
 
-
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1000);
 
 
 
 });
+
+
+// Login Validation 
+
+const loginForm = document.getElementById("loginform");
+const loginEmail = document.getElementById("loginemail");
+const loginPassword = document.getElementById("loginpassword");
+const loginError = document.getElementById("loginerror");
+
+let allUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+loginForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    let emailVal = loginEmail.value.trim();
+    let passwordVal = loginPassword.value.trim();
+    
+
+
+
+});
+
 
 
 
