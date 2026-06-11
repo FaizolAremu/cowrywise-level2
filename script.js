@@ -1,184 +1,181 @@
-// Signup form validation
+// ================= SIGN UP =================
+
 const signupForm = document.getElementById("signupform");
-const firstNameInput = document.getElementById("firstname");
-const lastNameInput = document.getElementById("lastname");
-const usernameInput = document.getElementById("username");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirmPassword");
-const errorMessage = document.getElementById("error");
 
+if (signupForm) {
 
-let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
+    const firstNameInput = document.getElementById("firstname");
+    const lastNameInput = document.getElementById("lastname");
+    const usernameInput = document.getElementById("username");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+    const errorMessage = document.getElementById("error");
 
-signupForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+    let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-    let firstNameValue = firstNameInput.value.trim();
-    let lastNameValue = lastNameInput.value.trim();
-    let usernameValue = usernameInput.value.trim();
-    let emailValue = emailInput.value.trim();
-    let phoneValue = phoneInput.value.trim();
-    let passwordValue = passwordInput.value.trim();
-    let confirmPasswordValue = confirmPasswordInput.value.trim();
+    signupForm.addEventListener("submit", function (event) {
 
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        event.preventDefault();
 
-    if (
-        firstNameValue === "" ||
-        lastNameValue === "" ||
-        usernameValue === "" ||
-        emailValue === "" ||
-        phoneValue === "" ||
-        passwordValue === "" ||
-        confirmPasswordValue === ""
-    ) {
-        errorMessage.innerHTML = "Please fill in all fields";
-        errorMessage.style.color = "red";
-        errorMessage.style.fontSize = "12px";
+        let firstNameValue = firstNameInput.value.trim();
+        let lastNameValue = lastNameInput.value.trim();
+        let usernameValue = usernameInput.value.trim();
+        let emailValue = emailInput.value.trim();
+        let phoneValue = phoneInput.value.trim();
+        let passwordValue = passwordInput.value.trim();
+        let confirmPasswordValue = confirmPasswordInput.value.trim();
 
-        return;
-    }
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Email validation
-    if (!emailPattern.test(emailValue)) {
-
-        errorMessage.innerHTML = "Enter a valid email address";
-        errorMessage.style.color = "red";
-        errorMessage.style.fontSize = "12px";
-
-        return;
-    }
-
-    errorMessage.innerHTML = "";
-
-    if (isNaN(phoneValue)) {
-
-        errorMessage.innerHTML = "Phone number must contain only numbers";
-        errorMessage.style.color = "red";
-
-        return;
-    }
-
-    if (phoneValue.length !== 11) {
-
-        errorMessage.innerHTML = "Phone number must be 11 digits";
-        errorMessage.style.color = "red";
-
-        return;
-    }
-
-    if (passwordValue.length < 8) {
-
-        errorMessage.innerHTML = "Password must be at least 8 characters";
-        errorMessage.style.color = "red";
-
-        return;
-    }
-
-    if (passwordValue !== confirmPasswordValue) {
-
-        errorMessage.innerHTML = "Passwords do not match";
-        errorMessage.style.color = "red";
-
-        return;
-    }
-
-
-    let emailExists = false;
-
-    for (let i = 0; i < users.length; i++) {
-
-        if (users[i].email === emailValue) {
-            emailExists = true;
-            break;
+        if (
+            firstNameValue === "" ||
+            lastNameValue === "" ||
+            usernameValue === "" ||
+            emailValue === "" ||
+            phoneValue === "" ||
+            passwordValue === "" ||
+            confirmPasswordValue === ""
+        ) {
+            errorMessage.innerHTML = "Please fill in all fields";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+            return;
         }
 
-    }
+        if (!emailPattern.test(emailValue)) {
 
-    if (emailExists) {
+            errorMessage.innerHTML = "Enter a valid email address";
+            errorMessage.style.color = "red";
+            return;
+        }
 
-        errorMessage.innerHTML = "Email already exists";
-        errorMessage.style.color = "red";
-        errorMessage.style.fontSize = "12px";
-        return;
-    }
+        if (isNaN(phoneValue)) {
 
-    let newUser = {
-        firstName: firstNameValue,
-        lastName: lastNameValue,
-        username: usernameValue,
-        email: emailValue,
-        phone: phoneValue,
-        password: passwordValue
-    };
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
+            errorMessage.innerHTML = "Phone number must contain only numbers";
+            errorMessage.style.color = "red";
+            return;
+        }
 
-    signupForm.reset();
+        if (phoneValue.length !== 11) {
 
-    alert("Account created successfully!");
+            errorMessage.innerHTML = "Phone number must be 11 digits";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        if (passwordValue.length < 8) {
+
+            errorMessage.innerHTML = "Password must be at least 8 characters";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        if (passwordValue !== confirmPasswordValue) {
+
+            errorMessage.innerHTML = "Passwords do not match";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].email === emailValue) {
+
+                errorMessage.innerHTML = "An account with this email already exists";
+                errorMessage.style.color = "red";
+                errorMessage.style.fontSize = "12px";
+
+                return;
+            }
+
+            else if (users[i].username === usernameValue) {
+
+                errorMessage.innerHTML = "Username already exists. Please choose another username";
+                errorMessage.style.color = "red";
+                errorMessage.style.fontSize = "12px";
+
+                return;
+            }
+
+        }
+
+        let newUser = {
+
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            username: usernameValue,
+            email: emailValue,
+            phone: phoneValue,
+            password: passwordValue
+
+        };
+
+        users.push(newUser);
+
+        localStorage.setItem("usersDetails", JSON.stringify(users));
+
+        signupForm.reset();
+
+        alert("Account created successfully!");
+
+    });
+
+}
 
 
-
-
-});
-
-
-// Login Validation 
+// ================= LOGIN =================
 
 const loginFormLf = document.getElementById("loginForm");
-const loginEmail = document.getElementById("loginemail");
-const loginPassword = document.getElementById("loginpassword");
-const loginError = document.getElementById("loginerror");
 
-let allUsers = JSON.parse(localStorage.getItem("users")) || [];
+if (loginFormLf) {
 
-loginFormLf.addEventListener("submit", function (event) {
+    const loginEmail = document.getElementById("loginemail");
+    const loginPassword = document.getElementById("loginpassword");
+    const loginError = document.getElementById("loginerror");
 
-    event.preventDefault();
+    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-    let emailVal = loginEmail.value.trim();
-    let passwordVal = loginPassword.value.trim();
+    loginFormLf.addEventListener("submit", function (event) {
 
-    if (emailVal === "" || passwordVal === "") {
-        loginError.innerHTML = "Please fill all fields";
-        loginError.style.color = "red";
-        loginError.style.fontSize = "12px";
+        event.preventDefault();
 
-        return;
-    }
-    
+        let emailVal = loginEmail.value.trim();
+        let passwordVal = loginPassword.value.trim();
 
+        if (emailVal === "" || passwordVal === "") {
 
-    let foundUser = false;
+            loginError.innerHTML = "Please fill all fields";
+            loginError.style.color = "red";
+            loginError.style.fontSize = "12px";
 
-    for (let i = 0; i < allUsers.length; i++) {
+        } else {
 
-        let storedEmail = allUsers[i].email;
-        let storedPassword = allUsers[i].password;
+            for (let i = 0; i < allUsers.length; i++) {
 
-        if (storedEmail === emailVal && storedPassword === passwordVal) {
-            foundUser = true;
-            break;
+                if (
+                    allUsers[i].email === emailVal &&
+                    allUsers[i].password === passwordVal
+                ) {
+
+                    alert(`Welcome ${allUsers[i].firstName} ${allUsers[i].lastName}`);
+
+                    loginFormLf.reset();
+
+                    loginError.innerHTML = "";
+
+                    return;
+
+                }
+
+            }
+            loginError.innerHTML = "Invalid credentials. Please try again.";
+            loginError.style.color = "red";
+            loginError.style.fontSize = "12px";
+
         }
-    }
 
-    if(foundUser) {
-        alert("Login successful!");
+    });
 
-        loginError.innerHTML = "";
-    } else {
-        loginError.innerHTML = "Invalid credentials. Please try again.";
-        loginError.style.color = "red";
-        loginError.style.fontSize = "12px";
-    }
-
-
-
-});
-
-
-
-
+}
