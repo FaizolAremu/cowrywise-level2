@@ -102,7 +102,7 @@ if (signupForm) {
         // }
 
 
-        
+
         // check email already exists
         if (users.find(user => user.email === emailValue)) {
 
@@ -171,32 +171,54 @@ if (loginFormLf) {
             loginError.innerHTML = "Please fill all fields";
             loginError.style.color = "red";
             loginError.style.fontSize = "12px";
+            return;
+        }
+
+        //  else {
+
+        //     for (let i = 0; i < allUsers.length; i++) {
+
+        //         if (
+        //             allUsers[i].email === emailVal &&
+        //             allUsers[i].password === passwordVal
+        //         ) {
+
+        //             alert(`Welcome ${allUsers[i].firstName} ${allUsers[i].lastName}`);
+
+        //             loginFormLf.reset();
+
+        //             loginError.innerHTML = "";
+
+        //             return;
+
+        //         }
+
+        //     }
+        //     loginError.innerHTML = "Invalid credentials. Please try again.";
+        //     loginError.style.color = "red";
+        //     loginError.style.fontSize = "12px";
+
+        // }
+
+        const foundUser = allUsers.find(
+            user => user.email === emailVal && user.password === passwordVal
+        );
+
+        if (foundUser) {
+
+            alert(`Welcome ${foundUser.firstName} ${foundUser.lastName}`);
+
+            loginFormLf.reset();
+
+            loginError.innerHTML = "";
 
         } else {
 
-            for (let i = 0; i < allUsers.length; i++) {
-
-                if (
-                    allUsers[i].email === emailVal &&
-                    allUsers[i].password === passwordVal
-                ) {
-
-                    alert(`Welcome ${allUsers[i].firstName} ${allUsers[i].lastName}`);
-
-                    loginFormLf.reset();
-
-                    loginError.innerHTML = "";
-
-                    return;
-
-                }
-
-            }
             loginError.innerHTML = "Invalid credentials. Please try again.";
             loginError.style.color = "red";
             loginError.style.fontSize = "12px";
-
         }
+
 
     });
 
