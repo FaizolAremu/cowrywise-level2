@@ -51,19 +51,21 @@ if (signupForm) {
             return;
         }
 
-        if (isNaN(phoneValue)) {
+        let phonePattern = /^[+]?[\d\s()-]{10,20}$/;
 
-            errorMessage.innerHTML = "Phone number must contain only numbers";
+        if (!phonePattern.test(phoneValue)) {
+
+            errorMessage.innerHTML = "Enter a valid phone number";
             errorMessage.style.color = "red";
             return;
         }
 
-        if (phoneValue.length !== 11) {
+        // if (phoneValue.length !== 11) {
 
-            errorMessage.innerHTML = "Phone number must be 11 digits";
-            errorMessage.style.color = "red";
-            return;
-        }
+        //     errorMessage.innerHTML = "Phone number must be 11 digits";
+        //     errorMessage.style.color = "red";
+        //     return;
+        // }
 
         if (passwordValue.length < 8) {
 
