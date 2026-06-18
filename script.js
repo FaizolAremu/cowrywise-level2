@@ -79,26 +79,48 @@ if (signupForm) {
             return;
         }
 
-        for (let i = 0; i < users.length; i++) {
+        // for (let i = 0; i < users.length; i++) {
 
-            if (users[i].email === emailValue) {
+        //     if (users[i].email === emailValue) {
 
-                errorMessage.innerHTML = "An account with this email already exists";
-                errorMessage.style.color = "red";
-                errorMessage.style.fontSize = "12px";
+        //         errorMessage.innerHTML = "An account with this email already exists";
+        //         errorMessage.style.color = "red";
+        //         errorMessage.style.fontSize = "12px";
 
-                return;
-            }
+        //         return;
+        //     }
 
-            else if (users[i].username === usernameValue) {
+        //     else if (users[i].username === usernameValue) {
 
-                errorMessage.innerHTML = "Username already exists. Please choose another username";
-                errorMessage.style.color = "red";
-                errorMessage.style.fontSize = "12px";
+        //         errorMessage.innerHTML = "Username already exists. Please choose another username";
+        //         errorMessage.style.color = "red";
+        //         errorMessage.style.fontSize = "12px";
 
-                return;
-            }
+        //         return;
+        //     }
 
+        // }
+
+
+        
+        // check email already exists
+        if (users.find(user => user.email === emailValue)) {
+
+            errorMessage.innerHTML = "An account with this email already exists";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+
+            return;
+        }
+
+        // check username already exists
+        if (users.find(user => user.username === usernameValue)) {
+
+            errorMessage.innerHTML = "Username already exists. Please choose another one";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+
+            return;
         }
 
         let newUser = {
