@@ -153,7 +153,8 @@ if (signupForm) {
             username: usernameValue,
             email: emailValue,
             phone: phoneValue,
-            password: passwordValue
+            password: passwordValue,
+            halal: halalSwitch.checked
 
         };
 
