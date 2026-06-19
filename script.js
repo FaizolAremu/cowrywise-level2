@@ -166,6 +166,10 @@ if (signupForm) {
 
         alert("Account created successfully!");
 
+        setTimeout(() => {
+            window.location.href = "create-pin.html";
+        }, 1000);
+
     });
 
 }
