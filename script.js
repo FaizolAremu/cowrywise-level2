@@ -13,7 +13,28 @@ if (signupForm) {
     const confirmPasswordInput = document.getElementById("confirmPassword");
     const errorMessage = document.getElementById("error");
 
+    const halalSwitch = document.getElementById("halalAccount");
+    const popupBox = document.getElementById("halalModal");
+    const gotItButton = document.getElementById("gotItBtn");
+    const closeButton = document.getElementById("closeModal");
+
     let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
+
+    // Popup functionality
+    halalSwitch.addEventListener("change", function () {
+        if (halalSwitch.checked) {
+            popupBox.style.display = "flex";
+        }
+    });
+
+    gotItButton.addEventListener("click", function () {
+        popupBox.style.display = "none";
+    });
+
+    closeButton.addEventListener("click", function () {
+        popupBox.style.display = "none";
+
+    });
 
     signupForm.addEventListener("submit", function (event) {
 

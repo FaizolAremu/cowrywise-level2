@@ -1251,6 +1251,67 @@ input:focus {
     transform: translateX(24px);
 }
 
+.halal-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.3);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.halal-modal-box {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 40px;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.halal-modal-box h3 {
+    color: #22c55e;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.halal-modal-box h1 {
+    color: #0a2e65;
+    margin-bottom: 25px;
+}
+
+.halal-modal-box p {
+    color: #7f8aa3;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+.halal-modal-box button {
+    border: none;
+    background: none;
+    color: #0066f5;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+
+    margin-top: 30px;
+
+    float: right;
+}
+
 
 
 /* RESPONSIVENESS */
