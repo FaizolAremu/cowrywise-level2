@@ -1197,7 +1197,59 @@ input:focus {
   background: #0052c7;
 }
 
+.halal-option {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* controls the space between text and switch */
+    margin-top: 20px;
+}
 
+.halal-option p {
+    margin: 0;
+    color: #0a2e65;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background-color: #d1d5db;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background-color: #0066f5;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
 
 
 
