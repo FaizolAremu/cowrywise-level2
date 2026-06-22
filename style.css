@@ -1380,6 +1380,12 @@ input:focus {
     cursor: pointer;
 }
 
+#pinError {
+    color: red;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
 
 
 /* RESPONSIVENESS */
