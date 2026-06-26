@@ -314,3 +314,41 @@ const createPin = () => {
     }, 1000);
 
 }
+
+const allPinInputs = document.querySelectorAll(".pin-inputs input");
+
+allPinInputs.forEach((input, index) => {
+
+    input.addEventListener("input", () => {
+
+        if (input.value.length === 1) {
+
+            let nextInput = allPinInputs[index + 1];
+
+            if (nextInput) {
+                nextInput.focus();
+            }
+
+        }
+
+    });
+
+});
+
+allPinInputs.forEach((input, index) => {
+
+    input.addEventListener("keydown", (e) => {
+
+        if (e.key === "Backspace" && input.value === "") {
+
+            let prevInput = allPinInputs[index - 1];
+
+            if (prevInput) {
+                prevInput.focus();
+            }
+
+        }
+
+    });
+
+});
