@@ -254,3 +254,63 @@ if (loginFormLf) {
 
 // Create-pin
 
+const createPin = () => {
+    const pin_Error = document.getElementById("pinError");
+    const pinInputs = document.querySelectorAll(".pin-inputs")[0].querySelectorAll("input");
+    const confirmpinInputs = document.querySelectorAll(".pin-inputs")[1].querySelectorAll("input");
+
+    function getPin(inputs) {
+
+        let pin = "";
+
+        for (let i = 0; i < inputs.length; i++) {
+            pin += inputs[i].value;
+        }
+        return pin;
+
+    }
+
+    let pin = getPin(pinInputs);
+    let confirmPin = getPin(confirmpinInputs);
+
+    if (pin === "" || confirmPin === "") {
+        pinError.innerHTML = "Please fill in your PIN";
+        return;
+    }
+
+    if (isNaN(pin) || isNaN(confirmPin)) {
+        pinError.innerHTML = "PIN must contain only numbers";
+        return;
+    }
+
+    if (pin.length !== 4 || confirmPin.length !== 4) {
+        pinError.innerHTML = "PIN must be 4 digits";
+        return;
+    }
+
+    if (pin !== confirmPin) {
+        pinError.innerHTML = "PIN does not match";
+        return;
+    }
+
+    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+
+    let lastUser = allUsers[allUsers.length - 1];
+
+    if (lastUser) {
+        lastUser.pin = pin;
+
+        localStorage.setItem(
+            "usersDetails",
+            JSON.stringify(allUsers)
+        );
+    }
+
+    pinError.style.color = "green";
+    pinError.innerHTML = "PIN created successfully!";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1000);
+
+}
