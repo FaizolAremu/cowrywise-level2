@@ -1198,193 +1198,244 @@ input:focus {
 }
 
 .halal-option {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* controls the space between text and switch */
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* controls the space between text and switch */
+  margin-top: 20px;
 }
 
 .halal-option p {
-    margin: 0;
-    color: #0a2e65;
-    font-size: 15px;
-    font-weight: 500;
+  margin: 0;
+  color: #0a2e65;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* Toggle Switch */
 .switch {
-    position: relative;
-    width: 50px;
-    height: 26px;
+  position: relative;
+  width: 50px;
+  height: 26px;
 }
 
 .switch input {
-    display: none;
+  display: none;
 }
 
 .slider {
-    position: absolute;
-    inset: 0;
-    background-color: #d1d5db;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.3s;
+  position: absolute;
+  inset: 0;
+  background-color: #d1d5db;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .slider::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.3s;
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
 }
 
-.switch input:checked + .slider {
-    background-color: #0066f5;
+.switch input:checked+.slider {
+  background-color: #0066f5;
 }
 
-.switch input:checked + .slider::before {
-    transform: translateX(24px);
+.switch input:checked+.slider::before {
+  transform: translateX(24px);
 }
 
 .halal-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.3);
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .3);
 
-    display: none;
+  display: none;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
-    z-index: 1000;
+  z-index: 1000;
 }
 
 .halal-modal-box {
-    background: white;
-    width: 90%;
-    max-width: 500px;
-    padding: 40px;
-    border-radius: 20px;
-    position: relative;
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 20px;
+  position: relative;
 }
 
 .close-modal {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 40px;
-    color: #9ca3af;
-    cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 40px;
+  color: #9ca3af;
+  cursor: pointer;
 }
 
 .halal-modal-box h3 {
-    color: #22c55e;
-    font-size: 30px;
-    margin-bottom: 20px;
+  color: #22c55e;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .halal-modal-box h1 {
-    color: #0a2e65;
-    margin-bottom: 25px;
+  color: #0a2e65;
+  margin-bottom: 25px;
 }
 
 .halal-modal-box p {
-    color: #7f8aa3;
-    line-height: 1.8;
-    font-size: 18px;
+  color: #7f8aa3;
+  line-height: 1.8;
+  font-size: 18px;
 }
 
 .halal-modal-box button {
-    border: none;
-    background: none;
-    color: #0066f5;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
+  border: none;
+  background: none;
+  color: #0066f5;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
 
-    margin-top: 30px;
+  margin-top: 30px;
 
-    float: right;
+  float: right;
 }
 
 
 /* PIN PAGE */
 
 .pin-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f4f7fb;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f7fb;
 }
 
 .pin-box {
-    background: white;
-    padding: 40px;
-    width: 400px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  background: white;
+  padding: 40px;
+  width: 400px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .lock-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .pin-box h2 {
-    color: #0a2e65;
+  color: #0a2e65;
 }
 
 .pin-box p {
-    color: #6b7280;
-    margin-bottom: 20px;
+  color: #6b7280;
+  margin-bottom: 20px;
 }
 
 .pin-box h4 {
-    margin-top: 20px;
-    color: #0a2e65;
-    font-size: 14px;
+  margin-top: 20px;
+  color: #0a2e65;
+  font-size: 14px;
 }
 
 .pin-inputs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .pin-inputs input {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    font-size: 18px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 #pin-container button,
 #createPinBtn {
-    margin-top: 25px;
-    padding: 12px 20px;
-    width: 100%;
-    background: #0066f5;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
+  margin-top: 25px;
+  padding: 12px 20px;
+  width: 100%;
+  background: #0066f5;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 #pinError {
-    color: red;
-    font-size: 13px;
-    margin-top: 10px;
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
 }
+
+
+.bvn-title {
+  font-size: 48px;
+  line-height: 1.2;
+  color: #083e9e;
+  margin-bottom: 45px;
+}
+
+.why-bvn {
+  color: #0066ff;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 18px 0 35px;
+  cursor: pointer;
+}
+
+.bvn-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.bvn-bottom a {
+  text-decoration: none;
+  color: #0066ff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bvn-bottom .signup-continue {
+  width: 130px;
+  margin: 0;
+}
+
+.profile-pic {
+  width: 55px;
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+.map-image {
+  width: 100%;
+  margin-top: 30px;
+  opacity: .4;
+}
+
+
+
 
 
 
