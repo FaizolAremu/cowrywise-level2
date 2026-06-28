@@ -363,18 +363,54 @@ const verifyBVN = () => {
     let bvnValue = bvnInput.value.trim();
     let dobValue = dobInput.value;
 
-    bvnError.innerText = "";
-    dobError.innerText = "";
+    bvnError.innerHTML = "";
+    dobError.innerHTML = "";
     bvnInput.classList.remove("error-border");
     dobInput.classList.remove("error-border");
 
-    if (bvn === "") {
-        bvnError.innerText = "Enter your BVN";
+    if (bvnValue === "") {
+        bvnError.innerHTML = "Enter your BVN";
 
         bvnInput.classList.add("error-border");
         return;
     }
 
-    if
+    if (dobValue === "") {
+        dobError.innerHTML = "Please select your Date of Birth";
 
+        dobInput.classList.add("error-border");
+        return;
+    }
+
+    if (isNaN(bvnValue)) {
+        bvnError.innerHTML = "BVN must contain only numbers";
+
+        bvnInput.classList.add("error-border");
+        return;
+
+    }
+
+    if (bvnValue.length !== 11) {
+        bvnError.innerHTML = "BVN must be 11 digits";
+
+        bvnInput.classList.add("error-border");
+        return;
+
+    }
+
+    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+
+    let lastUser = allUsers[allUsers.length - 1];
+
+    if (lastUser) {
+        lastUser.bvn = bvnValue;
+        lastUser.dateOfBirth = dobValue;
+
+        localStorage.setItem(
+            "usersDetails",
+            JSON.stringify(allUsers)
+        );
+    }
+
+    window.location.href = "login.html";
 }
