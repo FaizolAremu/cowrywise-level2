@@ -412,7 +412,7 @@ const verifyBVN = () => {
         );
     }
 
-    window.location.href = "login.html";
+    window.location.href = "welcome.html";
 }
 
 const bvnInput = document.getElementById("bvn");
