@@ -310,7 +310,7 @@ const createPin = () => {
     pinError.innerHTML = "PIN created successfully!";
 
     setTimeout(() => {
-        window.location.href = "login.html";
+        window.location.href = "bvn.html";
     }, 1000);
 
 }
@@ -352,3 +352,20 @@ allPinInputs.forEach((input, index) => {
     });
 
 });
+
+// BVN
+const verifyBVN = () => {
+    const bvnInput = document.getElementById("bvn");
+    const dobInput = document.getElementById("dob");
+    const bvnError = document.getElementById("bvnError");
+    const dobError = document.getElementById("dobError");
+
+    let bvnValue = bvnInput.value.trim();
+    let dobValue = dobInput.value;
+
+    bvnError.innerText = "";
+    dobError.innerText = "";
+    bvnInput.classList.remove("error-border");
+    dobInput.classList.remove("error-border");
+
+}
