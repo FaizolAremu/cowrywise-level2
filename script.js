@@ -414,3 +414,18 @@ const verifyBVN = () => {
 
     window.location.href = "login.html";
 }
+
+const bvnInput = document.getElementById("bvn");
+const bvnError = document.getElementById("bvnError");
+
+bvnInput.addEventListener("input", () => {
+    bvnInput.classList.remove("error-border");
+    bvnError.innerText = "";
+
+});
+
+dobInput.addEventListener("input", () => {
+    dobInput.classList.remove("error-border");
+    dobError.innerText = "";
+
+});
