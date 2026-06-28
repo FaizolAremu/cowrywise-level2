@@ -368,4 +368,13 @@ const verifyBVN = () => {
     bvnInput.classList.remove("error-border");
     dobInput.classList.remove("error-border");
 
+    if (bvn === "") {
+        bvnError.innerText = "Enter your BVN";
+
+        bvnInput.classList.add("error-border");
+        return;
+    }
+
+    if
+
 }
