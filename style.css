@@ -1562,6 +1562,12 @@ footer {
   letter-spacing: .5px;
 }
 
+.selected {
+
+  border: 3px solid #0066f5;
+
+}
+
 
 
 /* RESPONSIVENESS */

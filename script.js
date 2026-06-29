@@ -418,14 +418,63 @@ const verifyBVN = () => {
 const bvnInput = document.getElementById("bvn");
 const bvnError = document.getElementById("bvnError");
 
-bvnInput.addEventListener("input", () => {
-    bvnInput.classList.remove("error-border");
-    bvnError.innerText = "";
+const dobInput = document.getElementById("dob");
+const dobError = document.getElementById("dobError");
 
-});
+if (bvnInput) {
 
-dobInput.addEventListener("input", () => {
-    dobInput.classList.remove("error-border");
-    dobError.innerText = "";
+    bvnInput.addEventListener("input", () => {
+        bvnInput.classList.remove("error-border");
+        bvnError.innerText = "";
+    });
 
-});
+}
+
+if (dobInput) {
+
+    dobInput.addEventListener("input", () => {
+        dobInput.classList.remove("error-border");
+        dobError.innerText = "";
+    });
+
+}
+
+
+
+// Welcome 
+
+let selectedOption = "";
+
+function selectSavings() {
+
+    document.getElementById("savingsCard").classList.add("selected");
+    document.getElementById("investmentCard").classList.remove("selected");
+
+    selectedOption = "Savings";
+}
+
+function selectInvestment() {
+
+    document.getElementById("investmentCard").classList.add("selected");
+    document.getElementById("savingsCard").classList.remove("selected");
+
+    selectedOption = "Investments";
+}
+
+function continueBtn() {
+
+    if (selectedOption === "") {
+        alert("Please select an option");
+        return;
+    }
+
+    let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
+    let lastUser = allUsers[allUsers.length - 1];
+
+    if (lastUser) {
+        lastUser.accountType = selectedOption;
+        localStorage.setItem("usersDetails", JSON.stringify(allUsers));
+    }
+
+    window.location.href = "login.html";
+}
