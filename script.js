@@ -476,5 +476,5 @@ function continueBtn() {
         localStorage.setItem("usersDetails", JSON.stringify(allUsers));
     }
 
-    window.location.href = "login.html";
+    window.location.href = "dashboard.html";
 }
