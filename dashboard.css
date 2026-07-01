@@ -5,12 +5,14 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* Sidebar scrollbar */
-.sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
+/* Sidebar scrollbar & positioning */
+@media (min-width: 992px) {
+    .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+    }
 }
 
 .sidebar::-webkit-scrollbar {

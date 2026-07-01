@@ -24,75 +24,81 @@
 <div class="d-flex">
     
     <!-- Sidebar -->
-    <aside class="sidebar bg-white border-end d-flex flex-column p-3 flex-shrink-0" style="width: 250px;">
-        <!-- Logo -->
-        <a href="/" class="d-flex align-items-center mb-4 text-decoration-none px-3 pt-2">
+    <aside class="sidebar bg-white border-end d-flex flex-column flex-shrink-0 offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" style="width: 250px;">
+        <div class="offcanvas-header d-lg-none border-bottom">
             <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
-        </a>
-        
-        <!-- Greeting -->
-        <div class="px-3 mb-4 text-secondary fs-5">
-            Howdy <span class="fw-bold text-dark">Ryan</span>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
         </div>
-        
-        <!-- Navigation -->
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="dashboard.html" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-house"></i> Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-piggy-bank"></i> Save
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-chart-line"></i> Invest
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-egg"></i> Nest
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-regular fa-credit-card"></i> Payment
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-wallet"></i> Stash
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-graduation-cap"></i> Learn
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-bullhorn"></i> Referral
-                </a>
-            </li>
-        </ul>
-        
-        <!-- Bottom Section -->
-        <hr>
-        <div class="px-3 pb-3">
-            <small class="text-muted fw-bold d-block mb-3" style="font-size: 10px; letter-spacing: 1px;">ALSO FROM COWRYWISE</small>
-            <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 rounded p-2 hover-bg-light">
-                <div class="bg-success bg-opacity-10 text-success rounded p-2">
-                    <i class="fa-solid fa-leaf"></i>
-                </div>
-                <div class="lh-sm" style="font-size: 14px;">
-                    <span class="d-block fw-semibold">Sprout for</span>
-                    <span class="d-block fw-semibold">Business</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square ms-auto text-muted small"></i>
+        <div class="offcanvas-body d-flex flex-column p-3 flex-grow-1">
+            <!-- Logo (Desktop only) -->
+            <a href="/" class="d-none d-lg-flex align-items-center mb-4 text-decoration-none px-3 pt-2">
+                <img src="./Media/logo0.svg" alt="Cowrywise" height="30">
             </a>
+            
+            <!-- Greeting -->
+            <div class="px-3 mb-4 text-secondary fs-5">
+                Howdy <span class="fw-bold text-dark">Ryan</span>
+            </div>
+            
+            <!-- Navigation -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-piggy-bank"></i> Save
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-chart-line"></i> Invest
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-egg"></i> Nest
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-regular fa-credit-card"></i> Payment
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-wallet"></i> Stash
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-graduation-cap"></i> Learn
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-bullhorn"></i> Referral
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Bottom Section -->
+            <hr>
+            <div class="px-3 pb-3">
+                <small class="text-muted fw-bold d-block mb-3" style="font-size: 10px; letter-spacing: 1px;">ALSO FROM COWRYWISE</small>
+                <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 rounded p-2 hover-bg-light">
+                    <div class="bg-success bg-opacity-10 text-success rounded p-2">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div class="lh-sm" style="font-size: 14px;">
+                        <span class="d-block fw-semibold">Sprout for</span>
+                        <span class="d-block fw-semibold">Business</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square ms-auto text-muted small"></i>
+                </a>
+            </div>
         </div>
     </aside>
     
@@ -100,17 +106,21 @@
     <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
         
         <!-- Top Navbar -->
-        <header class="bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center sticky-top">
-            <div style="width: 150px;"></div>
-            
-            <div class="text-center fw-bold text-secondary" style="letter-spacing: 2px; font-size: 13px;">
-                ACCOUNT OVERVIEW
+        <header class="bg-white border-bottom py-3 px-3 px-md-4 d-flex justify-content-between align-items-center sticky-top">
+            <div class="d-flex align-items-center gap-3">
+                <!-- Hamburger Menu for Mobile -->
+                <button class="btn btn-light d-lg-none border-0 px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                    <i class="fa-solid fa-bars fs-5"></i>
+                </button>
+                <div class="d-none d-sm-block fw-bold text-secondary text-truncate" style="letter-spacing: 1px; font-size: 13px;">
+                    ACCOUNT OVERVIEW
+                </div>
             </div>
             
-            <div class="d-flex align-items-center gap-4" style="width: 150px; justify-content: flex-end;">
-                <div class="badge rounded-pill bg-light text-dark border d-flex align-items-center gap-2 px-3 py-2">
+            <div class="d-flex align-items-center gap-3 gap-md-4 justify-content-end">
+                <div class="badge rounded-pill bg-light text-dark border d-flex align-items-center gap-2 px-2 px-md-3 py-1 py-md-2">
                     <img src="./Media/s-coin-2.webp" alt="Seed" width="16" height="16">
-                    <span class="fw-semibold">Seed</span>
+                    <span class="fw-semibold d-none d-sm-inline">Seed</span>
                 </div>
                 <a href="#" class="text-secondary"><i class="fa-regular fa-bell fs-5"></i></a>
                 <div class="dropdown">
@@ -128,11 +138,11 @@
         </header>
         
         <!-- Content Area -->
-        <div class="p-4 p-md-5">
+        <div class="p-3 p-md-4 p-xl-5">
             
             <!-- Tabs & Action -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <ul class="nav nav-pills bg-white rounded-pill d-inline-flex p-1 shadow-sm">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+                <ul class="nav nav-pills bg-white rounded-pill d-inline-flex p-1 shadow-sm align-self-start">
                     <li class="nav-item">
                         <a class="nav-link rounded-pill px-4 text-secondary fw-semibold" href="dashboard.html">Home</a>
                     </li>
@@ -141,16 +151,16 @@
                     </li>
                 </ul>
                 
-                <a href="#" class="text-decoration-none text-primary fw-medium">
+                <a href="#" class="text-decoration-none text-primary fw-medium" style="font-size: 14px;">
                     <i class="fa-regular fa-envelope me-1"></i> Request investment letter
                 </a>
             </div>
             
             <!-- Grid Layout -->
-            <div class="row g-4">
+            <div class="row g-3 g-md-4">
                 
                 <!-- Left Column -->
-                <div class="col-12 col-xl-6 d-flex flex-column gap-4">
+                <div class="col-12 col-lg-6 d-flex flex-column gap-3 gap-md-4">
                     
                     <!-- Growth Card -->
                     <div class="card border-0 shadow-sm rounded-4 h-100">
@@ -233,7 +243,7 @@
                 </div>
                 
                 <!-- Right Column -->
-                <div class="col-12 col-xl-6">
+                <div class="col-12 col-lg-6">
                     
                     <!-- Earnings Card -->
                     <div class="card border-0 shadow-sm rounded-4 h-100">
