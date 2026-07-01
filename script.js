@@ -36,10 +36,94 @@ if (signupForm) {
 
     });
 
-    // Removed old localstorage signup submit handler to use Firebase in auth.js
-    // signupForm.addEventListener("submit", function (event) {
-    //    ...
-    // });
+    signupForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        let firstNameValue = firstNameInput.value.trim();
+        let lastNameValue = lastNameInput.value.trim();
+        let usernameValue = usernameInput.value.trim();
+        let emailValue = emailInput.value.trim();
+        let phoneValue = phoneInput.value.trim();
+        let passwordValue = passwordInput.value.trim();
+        let confirmPasswordValue = confirmPasswordInput.value.trim();
+
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (
+            firstNameValue === "" ||
+            lastNameValue === "" ||
+            usernameValue === "" ||
+            emailValue === "" ||
+            phoneValue === "" ||
+            passwordValue === "" ||
+            confirmPasswordValue === ""
+        ) {
+            errorMessage.innerHTML = "Please fill in all fields";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+            return;
+        }
+
+        if (!emailPattern.test(emailValue)) {
+            errorMessage.innerHTML = "Enter a valid email address";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        let phonePattern = /^[+]?[\d\s()-]{10,20}$/;
+
+        if (!phonePattern.test(phoneValue)) {
+            errorMessage.innerHTML = "Enter a valid phone number";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        if (passwordValue.length < 8) {
+            errorMessage.innerHTML = "Password must be at least 8 characters";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        if (passwordValue !== confirmPasswordValue) {
+            errorMessage.innerHTML = "Passwords do not match";
+            errorMessage.style.color = "red";
+            return;
+        }
+
+        if (users.find(user => user.email === emailValue)) {
+            errorMessage.innerHTML = "An account with this email already exists";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+            return;
+        }
+
+        if (users.find(user => user.username === usernameValue)) {
+            errorMessage.innerHTML = "Username already exists. Please choose another one";
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+            return;
+        }
+
+        let newUser = {
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            username: usernameValue,
+            email: emailValue,
+            phone: phoneValue,
+            password: passwordValue,
+            halal: halalSwitch.checked
+        };
+
+        users.push(newUser);
+        localStorage.setItem("usersDetails", JSON.stringify(users));
+        signupForm.reset();
+        alert("Account created successfully!");
+        
+        setTimeout(() => {
+            window.location.href = "create-pin.html";
+        }, 1000);
+    });
 }
 
 
@@ -55,10 +139,36 @@ if (loginFormLf) {
 
     let allUsers = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-    // Removed old localstorage login submit handler to use Firebase in auth.js
-    // loginFormLf.addEventListener("submit", function (event) {
-    //    ...
-    // });
+    loginFormLf.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let emailVal = loginEmail.value.trim();
+        let passwordVal = loginPassword.value.trim();
+
+        if (emailVal === "" || passwordVal === "") {
+            loginError.innerHTML = "Please fill all fields";
+            loginError.style.color = "red";
+            loginError.style.fontSize = "12px";
+            return;
+        }
+
+        const foundUser = allUsers.find(
+            user => user.email === emailVal && user.password === passwordVal
+        );
+
+        if (foundUser) {
+            alert(`Welcome ${foundUser.firstName} ${foundUser.lastName}`);
+
+            localStorage.setItem("currentUser", JSON.stringify(foundUser));
+            loginFormLf.reset();
+            loginError.innerHTML = "";
+            window.location.href = "dashboard.html";
+        } else {
+            loginError.innerHTML = "Invalid credentials. Please try again.";
+            loginError.style.color = "red";
+            loginError.style.fontSize = "12px";
+        }
+    });
 }
 
 // Create-pin

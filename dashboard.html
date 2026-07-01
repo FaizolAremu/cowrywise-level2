@@ -37,7 +37,7 @@
             
             <!-- Greeting -->
             <div class="px-3 mb-4 text-secondary fs-5">
-                Howdy <span class="fw-bold text-dark">Ryan</span>
+                Howdy <span class="fw-bold text-dark" id="dashboardName"></span>
             </div>
             
             <!-- Navigation -->
@@ -135,7 +135,7 @@
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -266,40 +266,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom JS -->
-<script>
-    // Eye icon toggle for balance
-    const toggleIcon = document.getElementById('toggleVisibility');
-    const balanceValue = document.getElementById('balanceValue');
-    const balanceCents = document.getElementById('balanceCents');
-    
-    let isVisible = true;
-    
-    toggleIcon.addEventListener('click', () => {
-        isVisible = !isVisible;
-        if(isVisible) {
-            toggleIcon.classList.remove('fa-eye-slash');
-            toggleIcon.classList.add('fa-eye');
-            balanceValue.textContent = '0';
-            balanceCents.textContent = '.00';
-            balanceCents.style.display = 'inline';
-        } else {
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-            balanceValue.textContent = '****';
-            balanceCents.style.display = 'none';
-        }
-    });
-
-    // Handle Active states on cash buttons
-    const cashBtns = document.querySelectorAll('.cash-btn');
-    cashBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            cashBtns.forEach(b => {
-                b.classList.remove('border-primary', 'text-primary', 'bg-primary-subtle');
-            });
-            btn.classList.add('border-primary', 'text-primary', 'bg-primary-subtle');
-        });
-    });
-</script>
+<script src="dashboard.js"></script>
 </body>
 </html>
