@@ -71,6 +71,11 @@ if (!currentUser.balance) {
 
 balanceValue.textContent = currentUser.balance;
 
+let nairaFundsBalance = document.getElementById("nairaFundsBalance");
+if (nairaFundsBalance) {
+    nairaFundsBalance.textContent = currentUser.balance;
+}
+
 // LOGOUT
 
 function logoutUser() {
@@ -115,6 +120,11 @@ function payWithPaystack(amountFromButton = null) {
             currentUser.balance += amount;
 
             balanceValue.textContent = currentUser.balance;
+
+            let nairaFundsBalance = document.getElementById("nairaFundsBalance");
+            if (nairaFundsBalance) {
+                nairaFundsBalance.textContent = currentUser.balance;
+            }
 
             // update users list
             let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
