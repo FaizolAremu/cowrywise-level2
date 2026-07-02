@@ -176,12 +176,12 @@
                     <div class="col-12 col-md-7 d-flex flex-column align-items-md-start">
                         <h6 class="fw-bold mb-3" style="color: #0b2f6a !important; font-size: 15px;">Add cash</h6>
                         <div class="d-flex flex-wrap gap-2">
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50">₦ 20K</button>
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50">₦ 50K</button>
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50">₦ 100K</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(20000)">₦ 20K</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(50000)">₦ 50K</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(100000)">₦ 100K</button>
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50">$ 100</button>
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50">$ 200</button>
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50 px-3">+</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50 px-3" data-bs-toggle="modal" data-bs-target="#addCashModal"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -254,8 +254,30 @@
         <img src="./Media/logo0.svg" alt="logo" style="width: 25px; filter: brightness(0) invert(1);">
     </button>
 
+    <!-- Add Cash Modal -->
+    <div class="modal fade" id="addCashModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Cash</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Enter Amount</label>
+                    <input type="number" id="paymentAmount" class="form-control" placeholder="Enter amount">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary w-100" onclick="payWithPaystack()">Proceed to Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Paystack -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 
     <!-- Custom JS -->
     <script src="dashboard.js"></script>
