@@ -69,9 +69,48 @@ function logoutUser() {
 function payWithPaystack() {
 
     let amountInput = document.getElementById("paymentAmount");
-
     let amount = amountInput.value;
 
-    console.log(amount);
+    if (amount === "" || amount <= 0) {
+        alert("Please enter a valid amount");
+        return;
+    }
 
+    let handler = PaystackPop.setup({
+
+        key: "pk_test_66fcb7bbecf30cee80d81bfea2009fd27831c8fd",
+
+        email: "testuser@gmail.com",
+
+        amount: amount * 100,
+
+        currency: "NGN",
+
+        callback: function (response) {
+
+            let balanceValue = document.getElementById("balanceValue");
+
+            let currentBalance = Number(balanceValue.textContent);
+
+            let amount = document.getElementById("paymentAmount").value;
+
+            let newBalance = currentBalance + Number(amount);
+
+            balanceValue.textContent = newBalance;
+
+            localStorage.setItem("balance", newBalance);
+
+            alert("Payment successful! Ref: " + response.reference);
+
+        },
+
+        onClose: function () {
+
+            alert("Transaction cancelled");
+
+        }
+
+    });
+
+    handler.openIframe();
 }
