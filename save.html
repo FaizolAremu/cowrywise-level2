@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invest | Cowrywise</title>
+    <title>Save | Cowrywise</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,13 +21,12 @@
     <link rel="stylesheet" href="dashboard.css">
     
     <style>
-        .invest-card-img {
-            position: absolute;
-            bottom: -5%;
-            right: -5%;
-            max-height: 140px;
-            max-width: 100%;
-            object-fit: contain;
+        .scroll-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -61,12 +60,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="save.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
+                        <a href="#" class="nav-link active d-flex align-items-center gap-3">
                             <i class="fa-solid fa-piggy-bank"></i> Save
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link active d-flex align-items-center gap-3">
+                        <a href="invest.html" class="nav-link d-flex align-items-center gap-3 text-secondary">
                             <i class="fa-solid fa-chart-line"></i> Invest
                         </a>
                     </li>
@@ -116,7 +115,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
+        <main class="flex-grow-1 d-flex flex-column" style="min-width: 0; width: 100%;">
 
             <!-- Top Navbar -->
             <header class="bg-white border-bottom py-3 px-3 px-md-4 d-flex justify-content-between align-items-center sticky-top">
@@ -155,7 +154,7 @@
             </header>
 
             <!-- Content Area -->
-            <div class="p-3 p-md-4 p-xl-5 bg-white h-100">
+            <div class="p-3 p-md-4 p-xl-5 bg-white h-100 w-100 overflow-hidden">
 
                 <!-- Top Row: Balance and Add Cash -->
                 <div class="row mb-5 align-items-center">
@@ -163,7 +162,7 @@
                     <!-- Balance -->
                     <div class="col-12 col-md-5 mb-4 mb-md-0">
                         <div class="d-flex align-items-center gap-2 text-secondary mb-2" style="cursor: pointer;">
-                            <span class="fw-medium fs-6" style="color: #718096;">Naira Balance</span>
+                            <span class="fw-medium fs-6" style="color: #718096;">Savings Balance</span>
                             <i class="fa-solid fa-chevron-down" style="color: #718096; font-size: 14px;"></i>
                             <i class="fa-regular fa-eye-slash ms-2" id="toggleVisibility" style="color: #718096;"></i>
                         </div>
@@ -179,70 +178,106 @@
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(20000)">₦ 20K</button>
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(50000)">₦ 50K</button>
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(100000)">₦ 100K</button>
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50">$ 100</button>
-                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50">$ 200</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(250000)">₦ 250K</button>
+                            <button class="btn cash-btn border bg-light text-dark bg-opacity-50" onclick="selectAmount(500000)">₦ 500K</button>
                             <button class="btn cash-btn border bg-light text-dark bg-opacity-50 px-3" data-bs-toggle="modal" data-bs-target="#addCashModal"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Investments Section -->
-                <h5 class="fw-bold mb-3 mt-5" style="color: #0b2f6a !important; font-size: 1.15rem;">Investments</h5>
-                <div class="row mb-5">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100" style="background-color: #e0f2fe;">
-                            <div class="d-flex align-items-center gap-4">
-                                <img src="./Media/mutual-fund.svg" alt="Fund" style="width: 50px; height: 50px; object-fit: contain;">
-                                <div>
-                                    <div class="fw-medium mb-1" style="color: #0b2f6a !important;">Naira Funds</div>
-                                    <div class="fw-bold fs-5" style="color: #0b2f6a !important;">₦ <span id="nairaFundsBalance">3000</span>.00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- More to invest in Section -->
-                <h5 class="fw-bold mb-3 mt-5" style="color: #0b2f6a !important; font-size: 1.15rem;">More to invest in</h5>
-                <div class="row g-3 g-md-4 mb-4">
+                <!-- Save by myself Section -->
+                <h5 class="fw-bold mb-4 mt-5" style="color: #0b2f6a !important; font-size: 1.15rem;">Save by myself</h5>
+                
+                <div class="d-flex flex-nowrap overflow-auto scroll-container gap-3 gap-md-4 mb-5 pb-3 w-100" style="scroll-snap-type: x mandatory;">
                     
-                    <!-- NG Stocks -->
-                    <div class="col-12 col-md-4">
-                        <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative" style="background-color: #bbf7d0; min-height: 220px;">
-                            <div class="card-body p-4 position-relative z-1">
-                                <h5 class="fw-bold" style="color: #166534 !important;">NG Stocks</h5>
+                    <div class="" style="min-width: 200px; max-width: 250px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border rounded-4 d-flex align-items-center justify-content-center h-100" style="min-height: 140px; cursor: pointer;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center text-primary" style="width: 50px; height: 50px; background-color: #f0fdf4;">
+                                <i class="fa-solid fa-plus fs-4"></i>
                             </div>
-                            <img src="./Media/home-product-stocks.webp" class="invest-card-img" alt="NG Stocks">
                         </div>
                     </div>
 
-                    <!-- Naira Mutual Funds -->
-                    <div class="col-12 col-md-4">
-                        <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative" style="background-color: #fed7aa; min-height: 220px;">
-                            <div class="card-body p-4 position-relative z-1">
-                                <h5 class="fw-bold" style="color: #9a3412 !important;">Naira Mutual Funds</h5>
+                    <!-- General -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #e0f2fe; min-height: 140px;">
+                            <img src="./Media/savings.svg" alt="Icon" width="50" height="50" style="object-fit: contain;">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">General</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
                             </div>
-                            <img src="./Media/home-product-mutual-funds.webp" class="invest-card-img" alt="Naira Mutual Funds">
                         </div>
                     </div>
 
-                    <!-- Dollar Mutual Funds -->
-                    <div class="col-12 col-md-4">
-                        <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100 position-relative" style="background-color: #e0e7ff; min-height: 220px;">
-                            <div class="card-body p-4 position-relative z-1">
-                                <h5 class="fw-bold" style="color: #3730a3 !important;">Dollar Mutual Funds</h5>
+                    <!-- Emergency -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #f3e8ff; min-height: 140px;">
+                            <img src="./Media/savings.svg" alt="Icon" width="50" height="50" style="object-fit: contain; filter: hue-rotate(250deg);">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">Emergency</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
                             </div>
-                            <img src="./Media/home-product-mutual-funds.webp" class="invest-card-img" style="filter: hue-rotate(200deg);" alt="Dollar Mutual Funds">
+                        </div>
+                    </div>
+
+                    <!-- Home -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #dcfce7; min-height: 140px;">
+                            <img src="./Media/savings.svg" alt="Icon" width="50" height="50" style="object-fit: contain; filter: hue-rotate(90deg);">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">Home</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Footer Link -->
-                <div class="mt-4">
-                    <a href="#" class="text-decoration-none text-primary fw-medium small d-flex align-items-center gap-1">
-                        <i class="fa-solid fa-circle-info"></i> Learn more about investments
-                    </a>
+                <!-- Save with others Section -->
+                <h5 class="fw-bold mb-4 mt-5" style="color: #0b2f6a !important; font-size: 1.15rem;">Save with others</h5>
+                <div class="d-flex flex-nowrap overflow-auto scroll-container gap-3 gap-md-4 mb-5 pb-3 w-100" style="scroll-snap-type: x mandatory;">
+                    
+                    <div class="" style="min-width: 200px; max-width: 250px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border rounded-4 d-flex align-items-center justify-content-center h-100" style="min-height: 140px; cursor: pointer;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center text-primary" style="width: 50px; height: 50px; background-color: #f0fdf4;">
+                                <i class="fa-solid fa-plus fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Money Duo -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #ffe4e6; min-height: 140px;">
+                            <img src="./Media/s-coin-2.webp" alt="Icon" width="50" height="50" style="object-fit: contain;">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">Money Duo</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Football -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #dcfce7; min-height: 140px;">
+                            <img src="./Media/s-coin-2.webp" alt="Icon" width="50" height="50" style="object-fit: contain; filter: hue-rotate(90deg);">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">Football</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Basketball -->
+                    <div class="" style="min-width: 280px; max-width: 320px; flex: 1; scroll-snap-align: start;">
+                        <div class="card border-0 rounded-4 p-4 shadow-sm h-100 d-flex flex-row align-items-center gap-4" style="background-color: #f3e8ff; min-height: 140px;">
+                            <img src="./Media/s-coin-2.webp" alt="Icon" width="50" height="50" style="object-fit: contain; filter: hue-rotate(250deg);">
+                            <div>
+                                <div class="fw-medium text-dark mb-2" style="color: #0b2f6a !important; font-size: 17px;">Basketball</div>
+                                <span class="badge bg-white text-secondary opacity-75 fw-bold px-3 py-1" style="font-size: 10px; letter-spacing: 1px;">EMPTY</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
