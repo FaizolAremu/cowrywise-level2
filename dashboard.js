@@ -34,11 +34,33 @@ cashBtns.forEach(btn => {
 
 
 /* ==========================
-DISPLAY USER DETAILS
+   PROTECT DASHBOARD
 ========================== */
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-if (currentUser) {
-    dashboardUser.innerHTML = currentUser.firstName;
+if (!currentUser) {
+
+    window.location.href = "login.html";
+
+}
+
+/* ==========================
+   DISPLAY USER NAME
+========================== */
+
+let dashboardUser = document.getElementById("dashboardName");
+
+dashboardUser.innerHTML = currentUser.firstName;
+
+/* ==========================
+   LOGOUT
+========================== */
+
+function logoutUser() {
+
+    localStorage.removeItem("currentUser");
+
+    window.location.href = "login.html";
+
 }

@@ -119,7 +119,7 @@ if (signupForm) {
         localStorage.setItem("usersDetails", JSON.stringify(users));
         signupForm.reset();
         alert("Account created successfully!");
-        
+
         setTimeout(() => {
             window.location.href = "create-pin.html";
         }, 1000);
@@ -160,6 +160,7 @@ if (loginFormLf) {
             alert(`Welcome ${foundUser.firstName} ${foundUser.lastName}`);
 
             localStorage.setItem("currentUser", JSON.stringify(foundUser));
+            
             loginFormLf.reset();
             loginError.innerHTML = "";
             window.location.href = "dashboard.html";
