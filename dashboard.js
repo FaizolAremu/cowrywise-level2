@@ -1,75 +1,107 @@
-// Eye icon toggle for balance
+// ==========================
+// BALANCE DISPLAY ELEMENTS
+// ==========================
+
 const toggleIcon = document.getElementById('toggleVisibility');
 const balanceValue = document.getElementById('balanceValue');
 const balanceCents = document.getElementById('balanceCents');
 
 let isVisible = true;
 
+// ==========================
+// TOGGLE BALANCE (SHOW / HIDE)
+// ==========================
+
 toggleIcon.addEventListener('click', () => {
     isVisible = !isVisible;
+
     if (isVisible) {
         toggleIcon.classList.remove('fa-eye-slash');
         toggleIcon.classList.add('fa-eye');
-        balanceValue.textContent = '0';
+
+        balanceValue.textContent = currentUser.balance;
         balanceCents.textContent = '.00';
         balanceCents.style.display = 'inline';
+
     } else {
         toggleIcon.classList.remove('fa-eye');
         toggleIcon.classList.add('fa-eye-slash');
+
         balanceValue.textContent = '****';
         balanceCents.style.display = 'none';
     }
 });
 
-// Handle Active states on cash buttons
+// ==========================
+// CASH BUTTON ACTIVE STATE
+// ==========================
+
 const cashBtns = document.querySelectorAll('.cash-btn');
+
 cashBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+
         cashBtns.forEach(b => {
             b.classList.remove('border-primary', 'text-primary', 'bg-primary-subtle');
         });
+
         btn.classList.add('border-primary', 'text-primary', 'bg-primary-subtle');
     });
 });
 
 
-/* ==========================
-   PROTECT DASHBOARD
-========================== */
+// ==========================
+// PROTECT DASHBOARD
+// ==========================
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 if (!currentUser) {
-
     window.location.href = "login.html";
-
 }
 
-/* ==========================
-   DISPLAY USER NAME
-========================== */
+// ==========================
+// SET DEFAULT BALANCE
+// ==========================
+
+if (!currentUser.balance) {
+    currentUser.balance = 0;
+}
+
+// ==========================
+// DISPLAY USER NAME
+// ==========================
 
 let dashboardUser = document.getElementById("dashboardName");
-
 dashboardUser.innerHTML = currentUser.firstName;
 
-/* ==========================
-   LOGOUT
-========================== */
+// ==========================
+// DISPLAY BALANCE ON LOAD
+// ==========================
+
+balanceValue.textContent = currentUser.balance;
+
+
+// ==========================
+// LOGOUT
+// ==========================
 
 function logoutUser() {
 
     localStorage.removeItem("currentUser");
-
     window.location.href = "login.html";
 
 }
 
 
+// ==========================
+// PAYSTACK PAYMENT
+// ==========================
+
 function payWithPaystack() {
 
     let amountInput = document.getElementById("paymentAmount");
-    let amount = amountInput.value;
+    let amount = Number(amountInput.value);
 
     if (amount === "" || amount <= 0) {
         alert("Please enter a valid amount");
@@ -80,7 +112,7 @@ function payWithPaystack() {
 
         key: "pk_test_66fcb7bbecf30cee80d81bfea2009fd27831c8fd",
 
-        email: "testuser@gmail.com",
+        email: currentUser.email,
 
         amount: amount * 100,
 
@@ -88,26 +120,30 @@ function payWithPaystack() {
 
         callback: function (response) {
 
-            let balanceValue = document.getElementById("balanceValue");
+            // UPDATE BALANCE
+            currentUser.balance += amount;
 
-            let currentBalance = Number(balanceValue.textContent);
+            balanceValue.textContent = currentUser.balance;
 
-            let amount = document.getElementById("paymentAmount").value;
+            // UPDATE USERS LIST
+            let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
-            let newBalance = currentBalance + Number(amount);
+            let index = users.findIndex(user => user.email === currentUser.email);
 
-            balanceValue.textContent = newBalance;
+            if (index !== -1) {
+                users[index] = currentUser;
+                localStorage.setItem("usersDetails", JSON.stringify(users));
+            }
 
-            localStorage.setItem("balance", newBalance);
+            // UPDATE CURRENT USER SESSION
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
             alert("Payment successful! Ref: " + response.reference);
 
         },
 
         onClose: function () {
-
             alert("Transaction cancelled");
-
         }
 
     });
