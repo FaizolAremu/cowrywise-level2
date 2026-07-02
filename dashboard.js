@@ -64,3 +64,14 @@ function logoutUser() {
     window.location.href = "login.html";
 
 }
+
+
+function payWithPaystack() {
+
+    let amountInput = document.getElementById("paymentAmount");
+
+    let amount = amountInput.value;
+
+    console.log(amount);
+
+}
