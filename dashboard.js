@@ -38,6 +38,14 @@ cashBtns.forEach(btn => {
     });
 });
 
+let selectedAmount = 0;
+
+function selectAmount(amount) {
+    selectedAmount = amount;
+
+    payWithPaystack(amount);
+}
+
 // PROTECT DASHBOARD
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -46,17 +54,19 @@ if (!currentUser) {
     window.location.href = "login.html";
 }
 
-// SET DEFAULT BALANCE
 
-if (!currentUser.balance) {
-    currentUser.balance = 0;
-}
 
 // DISPLAY USER NAME
 
 let dashboardUser = document.getElementById("dashboardName");
 dashboardUser.innerHTML = currentUser.firstName;
 
+
+// SET DEFAULT BALANCE
+
+if (!currentUser.balance) {
+    currentUser.balance = 0;
+}
 // DISPLAY BALANCE ON LOAD
 
 balanceValue.textContent = currentUser.balance;
@@ -72,12 +82,20 @@ function logoutUser() {
 
 // PAYSTACK PAYMENT
 
-function payWithPaystack() {
+function payWithPaystack(amountFromButton = null) {
 
     let amountInput = document.getElementById("paymentAmount");
-    let amount = Number(amountInput.value);
 
-    if (amount === "" || amount <= 0) {
+    let amount;
+
+    // If button clicked (10k, 20k, 50k)
+    if (amountFromButton) {
+        amount = amountFromButton;
+    } else {
+        amount = Number(amountInput.value);
+    }
+
+    if (amount <= 0 || amount === "") {
         alert("Please enter a valid amount");
         return;
     }
@@ -94,12 +112,11 @@ function payWithPaystack() {
 
         callback: function (response) {
 
-            // UPDATE BALANCE
             currentUser.balance += amount;
 
             balanceValue.textContent = currentUser.balance;
 
-            // UPDATE USERS LIST
+            // update users list
             let users = JSON.parse(localStorage.getItem("usersDetails")) || [];
 
             let index = users.findIndex(user => user.email === currentUser.email);
@@ -109,11 +126,9 @@ function payWithPaystack() {
                 localStorage.setItem("usersDetails", JSON.stringify(users));
             }
 
-            // UPDATE CURRENT USER SESSION
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
             alert("Payment successful! Ref: " + response.reference);
-
         },
 
         onClose: function () {
