@@ -1,16 +1,9 @@
-// ==========================
-// BALANCE DISPLAY ELEMENTS
-// ==========================
 
 const toggleIcon = document.getElementById('toggleVisibility');
 const balanceValue = document.getElementById('balanceValue');
 const balanceCents = document.getElementById('balanceCents');
 
 let isVisible = true;
-
-// ==========================
-// TOGGLE BALANCE (SHOW / HIDE)
-// ==========================
 
 toggleIcon.addEventListener('click', () => {
     isVisible = !isVisible;
@@ -32,10 +25,6 @@ toggleIcon.addEventListener('click', () => {
     }
 });
 
-// ==========================
-// CASH BUTTON ACTIVE STATE
-// ==========================
-
 const cashBtns = document.querySelectorAll('.cash-btn');
 
 cashBtns.forEach(btn => {
@@ -49,10 +38,7 @@ cashBtns.forEach(btn => {
     });
 });
 
-
-// ==========================
 // PROTECT DASHBOARD
-// ==========================
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -60,31 +46,22 @@ if (!currentUser) {
     window.location.href = "login.html";
 }
 
-// ==========================
 // SET DEFAULT BALANCE
-// ==========================
 
 if (!currentUser.balance) {
     currentUser.balance = 0;
 }
 
-// ==========================
 // DISPLAY USER NAME
-// ==========================
 
 let dashboardUser = document.getElementById("dashboardName");
 dashboardUser.innerHTML = currentUser.firstName;
 
-// ==========================
 // DISPLAY BALANCE ON LOAD
-// ==========================
 
 balanceValue.textContent = currentUser.balance;
 
-
-// ==========================
 // LOGOUT
-// ==========================
 
 function logoutUser() {
 
@@ -93,10 +70,7 @@ function logoutUser() {
 
 }
 
-
-// ==========================
 // PAYSTACK PAYMENT
-// ==========================
 
 function payWithPaystack() {
 
